@@ -9,7 +9,7 @@ interface SidebarProps {
   user: User;
 }
 
-const Sidebar = ({ activeTab, setActiveTab, onLogout, user }: SidebarProps) => {
+const Sidebar = ({ activeTab, setActiveTab, onLogout }: SidebarProps) => {
   const navItems = [
     { name: 'Tableau de bord', key: 'dashboard', icon: '🏠' },
     { name: 'Personnels', key: 'personnels', icon: '👤', tabKeys: ['users'] },
@@ -26,7 +26,7 @@ const Sidebar = ({ activeTab, setActiveTab, onLogout, user }: SidebarProps) => {
     if (key === 'personnels') setActiveTab('users');
     else if (key === 'historique') setActiveTab('all-tasks');
     else if (key === 'dashboard') setActiveTab('dashboard');
-    
+
   };
 
   return (

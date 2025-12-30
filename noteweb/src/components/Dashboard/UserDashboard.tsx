@@ -99,7 +99,6 @@ const UserDashboard = ({ user, onLogout }: UserDashboardProps) => {
 
   const completedTasks = tasks.filter(t => t.statut === 'terminé' || t.statut === 'validé').length;
   const inProgressTasks = tasks.filter(t => t.statut === 'en cours').length;
-  const pendingTasks = tasks.filter(t => t.statut === 'à faire').length;
   const validatedTasks = tasks.filter(t => t.statut === 'validé').length;
 
   const getPageTitle = () => {
@@ -119,7 +118,7 @@ const UserDashboard = ({ user, onLogout }: UserDashboardProps) => {
         <h1 className="text-2xl font-bold mb-8 flex items-center gap-2">
           <DashboardIcon /> TaskManager
         </h1>
-        
+
         {/* User Info */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
@@ -138,41 +137,37 @@ const UserDashboard = ({ user, onLogout }: UserDashboardProps) => {
         <nav className="space-y-2 flex-1">
           <button
             onClick={() => setActiveTab("dashboard")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "dashboard" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "dashboard"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <DashboardIcon className="w-5 h-5" /> Tableau de bord
           </button>
           <button
             onClick={() => setActiveTab("my-tasks")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "my-tasks" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "my-tasks"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <AssignmentIcon className="w-5 h-5" /> Mes tâches
           </button>
           <button
             onClick={() => setActiveTab("completed")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "completed" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "completed"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <CheckCircleIcon className="w-5 h-5" /> Tâches terminées
           </button>
           <button
             onClick={() => setActiveTab("profile")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "profile" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "profile"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <PersonIcon className="w-5 h-5" /> Mon profil
           </button>
@@ -199,11 +194,11 @@ const UserDashboard = ({ user, onLogout }: UserDashboardProps) => {
           <h1 className="text-2xl font-bold text-gray-800">{getPageTitle()}</h1>
           <p className="text-gray-500 text-sm flex items-center gap-2">
             <CalendarTodayIcon className="w-4 h-4" />
-            {new Date().toLocaleDateString('fr-FR', { 
-              weekday: 'long', 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
+            {new Date().toLocaleDateString('fr-FR', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
             })}
           </p>
         </div>
@@ -420,36 +415,33 @@ const UserDashboard = ({ user, onLogout }: UserDashboardProps) => {
                       <span className={`px-3 py-1.5 rounded-full text-sm font-medium ${getStatusColor(task.statut)}`}>
                         Statut: {task.statut}
                       </span>
-                      
+
                       {task.statut !== 'validé' && (
                         <div className="flex flex-wrap gap-2">
                           <button
                             onClick={() => updateTaskStatus(task.id, 'à faire')}
-                            className={`px-4 py-2 rounded-lg transition-colors ${
-                              task.statut === 'à faire' 
-                                ? 'bg-red-600 text-white' 
+                            className={`px-4 py-2 rounded-lg transition-colors ${task.statut === 'à faire'
+                                ? 'bg-red-600 text-white'
                                 : 'bg-red-100 text-red-700 hover:bg-red-200'
-                            }`}
+                              }`}
                           >
                             À faire
                           </button>
                           <button
                             onClick={() => updateTaskStatus(task.id, 'en cours')}
-                            className={`px-4 py-2 rounded-lg transition-colors ${
-                              task.statut === 'en cours' 
-                                ? 'bg-yellow-600 text-white' 
+                            className={`px-4 py-2 rounded-lg transition-colors ${task.statut === 'en cours'
+                                ? 'bg-yellow-600 text-white'
                                 : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
-                            }`}
+                              }`}
                           >
                             En cours
                           </button>
                           <button
                             onClick={() => updateTaskStatus(task.id, 'terminé')}
-                            className={`px-4 py-2 rounded-lg transition-colors ${
-                              task.statut === 'terminé' 
-                                ? 'bg-green-600 text-white' 
+                            className={`px-4 py-2 rounded-lg transition-colors ${task.statut === 'terminé'
+                                ? 'bg-green-600 text-white'
                                 : 'bg-green-100 text-green-700 hover:bg-green-200'
-                            }`}
+                              }`}
                           >
                             Terminer
                           </button>
@@ -517,7 +509,7 @@ const UserDashboard = ({ user, onLogout }: UserDashboardProps) => {
               <h2 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
                 <PersonIcon className="w-5 h-5" /> Mon profil
               </h2>
-              
+
               <div className="flex flex-col md:flex-row gap-8">
                 {/* Avatar */}
                 <div className="flex flex-col items-center">
@@ -536,33 +528,33 @@ const UserDashboard = ({ user, onLogout }: UserDashboardProps) => {
                     <p className="text-sm text-gray-500">Nom complet</p>
                     <p className="text-lg font-medium text-gray-800">{user.prenom} {user.nom}</p>
                   </div>
-                  
+
                   <div className="space-y-1">
                     <p className="text-sm text-gray-500 flex items-center gap-1">
                       <EmailIcon className="w-4 h-4" /> Email
                     </p>
                     <p className="text-lg font-medium text-gray-800">{user.email}</p>
                   </div>
-                  
+
                   <div className="space-y-1">
                     <p className="text-sm text-gray-500 flex items-center gap-1">
                       <PhoneIcon className="w-4 h-4" /> Téléphone
                     </p>
                     <p className="text-lg font-medium text-gray-800">{user.telephone}</p>
                   </div>
-                  
+
                   <div className="space-y-1">
                     <p className="text-sm text-gray-500 flex items-center gap-1">
                       <BadgeIcon className="w-4 h-4" /> Rôle
                     </p>
                     <p className="text-lg font-medium text-gray-800 capitalize">{user.role}</p>
                   </div>
-                  
+
                   <div className="space-y-1">
                     <p className="text-sm text-gray-500">ID Utilisateur</p>
                     <p className="text-lg font-medium text-gray-800">{user.id}</p>
                   </div>
-                  
+
                   {user.created_at && (
                     <div className="space-y-1">
                       <p className="text-sm text-gray-500 flex items-center gap-1">
@@ -592,14 +584,14 @@ const UserDashboard = ({ user, onLogout }: UserDashboardProps) => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Toaster position="top-right" />
-      
+
       {/* Sidebar */}
       <Sidebar />
-      
+
       {/* Contenu principal */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar />
-        
+
         <main className="flex-1 overflow-y-auto">
           {renderContent()}
         </main>

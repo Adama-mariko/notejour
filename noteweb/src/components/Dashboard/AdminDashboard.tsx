@@ -4,7 +4,6 @@ import { taskService } from "../../services/taskService";
 import type { Task } from "../../types/Task";
 import type { User } from "../../types/User";
 import CreateUserModal from "./CreateUserModal";
-import logo from "../../assets/images/logo.jpg";
 import TaskCard from "./TaskCard";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
@@ -40,7 +39,7 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
     fileInputRef.current?.click();
   };
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       const reader = new FileReader();
@@ -73,7 +72,7 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
         taskService.getAllUsers(),
         taskService.getAllTasks()
       ]);
-      
+
       console.log("✅ Users chargés:", usersData);
       setUsers(usersData || []);
       setAllTasks(tasksData || []);
@@ -173,7 +172,7 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
 
   const handleCreateUser = async () => {
     const { nom, prenom, email, telephone, password, role } = newUser;
-    
+
     if (!nom || !prenom || !email || !telephone || !password) {
       toast.error("Veuillez remplir tous les champs");
       return;
@@ -192,17 +191,17 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
 
       toast.success("✅ Utilisateur créé avec succès");
       setShowCreateUserModal(false);
-      setNewUser({ 
-        nom: "", 
-        prenom: "", 
-        email: "", 
-        telephone: "", 
-        password: "", 
-        role: "user" 
+      setNewUser({
+        nom: "",
+        prenom: "",
+        email: "",
+        telephone: "",
+        password: "",
+        role: "user"
       });
-      
+
       await fetchUsers();
-      
+
     } catch (err: any) {
       console.error("❌ Erreur création utilisateur:", err);
       toast.error(err.message || "Erreur lors de la création");
@@ -253,7 +252,7 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
             className="h-25 w-auto rounded-2xl object-contain"
           />
         </div> */}
-        
+
         <div className="mb-8 flex flex-col items-center gap-2">
           <div
             className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center cursor-pointer overflow-hidden"
@@ -269,7 +268,7 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
           <div className="text-center">
             <p className="font-medium">{user.prenom} {user.nom}</p>
             <span className="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Administrateur</span>
-        </div>
+          </div>
           <input
             type="file"
             accept="image/*"
@@ -283,51 +282,46 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
         <nav className="space-y-2 flex-1">
           <button
             onClick={() => setActiveTab("dashboard")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "dashboard" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "dashboard"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <DashboardIcon className="w-5 h-5" /> Tableau de bord
           </button>
           <button
             onClick={() => setActiveTab("users")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "users" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "users"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <PeopleIcon className="w-5 h-5" /> Utilisateurs
           </button>
           <button
             onClick={() => setActiveTab("tasks")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "tasks" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "tasks"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <ListAltIcon className="w-5 h-5" /> Toutes les tâches
           </button>
           <button
             onClick={() => setActiveTab("pending")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "pending" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "pending"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <PendingActionsIcon className="w-5 h-5" /> En attente
           </button>
           <button
             onClick={() => setActiveTab("validated")}
-            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
-              activeTab === "validated" 
-                ? "bg-blue-600 text-white" 
+            className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${activeTab === "validated"
+                ? "bg-blue-600 text-white"
                 : "hover:bg-gray-800 text-gray-300"
-            }`}
+              }`}
           >
             <CheckCircleIcon className="w-5 h-5" /> Validées
           </button>
@@ -352,11 +346,11 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
           <h1 className="text-2xl font-bold text-gray-800">{getPageTitle()}</h1>
           <p className="text-gray-500 text-sm flex items-center gap-2">
             <CalendarTodayIcon className="w-4 h-4" />
-            {new Date().toLocaleDateString('fr-FR', { 
-              weekday: 'long', 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
+            {new Date().toLocaleDateString('fr-FR', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
             })}
           </p>
         </div>
@@ -505,11 +499,10 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
                     {users.map((userItem) => (
                       <div
                         key={userItem.id}
-                        className={`p-4 rounded-lg border cursor-pointer transition-all ${
-                          selectedUser?.id === userItem.id 
-                            ? "bg-blue-50 border-blue-300" 
+                        className={`p-4 rounded-lg border cursor-pointer transition-all ${selectedUser?.id === userItem.id
+                            ? "bg-blue-50 border-blue-300"
                             : "bg-gray-50 border-gray-200 hover:bg-gray-100"
-                        }`}
+                          }`}
                         onClick={() => handleUserSelect(userItem)}
                       >
                         <div className="flex items-center gap-3">
@@ -521,11 +514,10 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
                               {userItem.prenom} {userItem.nom}
                             </h4>
                             <p className="text-sm text-gray-600">{userItem.email}</p>
-                            <span className={`text-xs px-2 py-1 rounded mt-1 inline-block ${
-                              userItem.role === 'admin' 
-                                ? 'bg-purple-100 text-purple-800' 
+                            <span className={`text-xs px-2 py-1 rounded mt-1 inline-block ${userItem.role === 'admin'
+                                ? 'bg-purple-100 text-purple-800'
                                 : 'bg-green-100 text-green-800'
-                            }`}>
+                              }`}>
                               {userItem.role}
                             </span>
                           </div>
@@ -542,7 +534,7 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
                     <h3 className="text-lg font-medium text-gray-700 mb-4 flex items-center gap-2">
                       <AssignmentIcon className="w-5 h-5" /> Tâches de {selectedUser.prenom}
                     </h3>
-                    
+
                     <div className="space-y-4 mb-6">
                       <input
                         type="text"
@@ -561,11 +553,10 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
                       <button
                         onClick={handleCreateTask}
                         disabled={!newTask.titre.trim()}
-                        className={`w-full px-4 py-3 rounded-lg font-medium flex items-center justify-center gap-2 ${
-                          newTask.titre.trim()
+                        className={`w-full px-4 py-3 rounded-lg font-medium flex items-center justify-center gap-2 ${newTask.titre.trim()
                             ? "bg-blue-600 hover:bg-blue-700 text-white"
                             : "bg-gray-100 text-gray-400 cursor-not-allowed"
-                        }`}
+                          }`}
                       >
                         <AssignmentIcon className="w-5 h-5" /> Assigner la tâche
                       </button>
@@ -698,12 +689,12 @@ const AdminDashboard = ({ user, onLogout }: AdminDashboardProps) => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Toaster position="top-right" />
-      
+
       <Sidebar />
-      
+
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar />
-        
+
         <main className="flex-1 overflow-y-auto">
           {renderContent()}
         </main>

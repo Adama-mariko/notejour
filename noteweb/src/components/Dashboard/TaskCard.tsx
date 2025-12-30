@@ -1,4 +1,3 @@
-import React from "react";
 import type { Task } from "../../types";
 // Import des icônes Material-UI
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -27,7 +26,6 @@ const TaskCard = ({
   onValidate,
   onDelete,
   getStatusColor,
-  getStatusIcon,
   showUser = false
 }: TaskCardProps) => {
   // Fonction pour obtenir l'icône Material-UI selon le statut

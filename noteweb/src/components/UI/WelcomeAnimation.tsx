@@ -1,7 +1,25 @@
 import React, { useEffect, useState } from 'react';
 
-const WelcomeAnimation = ({ user, onAnimationComplete }) => {
-  const [fireworks, setFireworks] = useState([]);
+interface User {
+  prenom: string;
+}
+
+interface Firework {
+  id: number;
+  left: number;
+  top: number;
+  size: number;
+  duration: number;
+  color: string;
+}
+
+interface WelcomeAnimationProps {
+  user: User;
+  onAnimationComplete: () => void;
+}
+
+const WelcomeAnimation: React.FC<WelcomeAnimationProps> = ({ user, onAnimationComplete }) => {
+  const [fireworks, setFireworks] = useState<Firework[]>([]);
   const [currentText, setCurrentText] = useState('');
   const [showContent, setShowContent] = useState(false);
 
@@ -26,12 +44,12 @@ const WelcomeAnimation = ({ user, onAnimationComplete }) => {
   }, [fullText]);
 
   const startFireworks = () => {
-    const createFirework = () => {
+    const createFirework = (): Firework => {
       const left = Math.random() * 100;
       const top = Math.random() * 100;
       const size = Math.random() * 30 + 20;
       const duration = Math.random() * 2 + 1;
-      
+
       return {
         id: Date.now() + Math.random(),
         left,
@@ -44,7 +62,7 @@ const WelcomeAnimation = ({ user, onAnimationComplete }) => {
 
     const interval = setInterval(() => {
       setFireworks(prev => [
-        ...prev.slice(-20), 
+        ...prev.slice(-20),
         createFirework()
       ]);
     }, 200);

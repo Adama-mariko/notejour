@@ -1,0 +1,8 @@
+﻿src/components/Dashboard/AdminDashboard.tsx(7,1): error TS6133: 'logo' is declared but its value is never read.
+src/components/Dashboard/Dashboard.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/Dashboard/Navbar.tsx(2,1): error TS6133: 'React' is declared but its value is never read.
+src/components/Dashboard/Navbar.tsx(12,19): error TS6133: 'user' is declared but its value is never read.
+src/components/Dashboard/Sidebar.tsx(12,55): error TS6133: 'user' is declared but its value is never read.
+src/components/Dashboard/TaskCard.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/Dashboard/TaskCard.tsx(30,3): error TS6133: 'getStatusIcon' is declared but its value is never read.
+src/components/Dashboard/UserDashboard.tsx(102,9): error TS6133: 'pendingTasks' is declared but its value is never read.
