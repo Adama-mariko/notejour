@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: notejour-api
+    env: python
+    plan: free
+    rootDir: server
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: notejour-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false
+
+databases:
+  - name: notejour-db
+    databaseName: notejour
+    user: admin
+    plan: free
+    region: frankfurt
