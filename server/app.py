@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from config import Config
 from extensions import db, bcrypt, migrate, jwt, cors
@@ -18,10 +19,12 @@ def create_app():
     bcrypt.init_app(app)
     jwt.init_app(app)
     
+    frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:5173")
+    
     cors.init_app(app, resources={
         r"/*": {
-            "origins": ["http://localhost:5173", "http://127.0.0.1:5173"],
-            "methods": ["GET", "POST", "PUT", "DELETE"],
+            "origins": [frontend_url, "http://localhost:5173", "http://127.0.0.1:5173"],
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
             "allow_headers": ["Content-Type", "Authorization"],
             "supports_credentials": True
         }

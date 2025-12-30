@@ -2,7 +2,7 @@ import type { Task } from "../types";
 import type { User } from "../types/User";
 import { authService } from "./authService";
 
-const API_URL = "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 class TaskService {
   private getHeaders(): HeadersInit {
@@ -44,7 +44,7 @@ class TaskService {
   }): Promise<any> {
     try {
       console.log("🔄 Envoi création utilisateur...", userData);
-      
+
       const response = await fetch(`${API_URL}/auth/admin/create-user`, {
         method: "POST",
         headers: this.getHeaders(),
@@ -71,7 +71,7 @@ class TaskService {
 
       console.log("✅ Création réussie:", data);
       return data;
-      
+
     } catch (error) {
       console.error("🔥 Erreur dans createUser:", error);
       throw error;

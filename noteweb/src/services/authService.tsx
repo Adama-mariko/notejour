@@ -1,7 +1,7 @@
 import type { RegisterData, LoginData, LoginResponse } from "../types";
 import type { User } from "../types/User";
 
-const API_URL = 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 export const authService = {
 
@@ -48,7 +48,7 @@ export const authService = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}` 
+            "Authorization": `Bearer ${token}`
           }
         });
       } catch (err) {
